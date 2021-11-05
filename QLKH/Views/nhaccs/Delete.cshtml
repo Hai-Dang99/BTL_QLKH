@@ -1,0 +1,47 @@
+﻿@model QLKH.Models.nhacc
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>bạn có chắc muốn xóa bản ghi này?</h3>
+@if (ViewBag.Flag == 1)
+{
+    <div class="alert alert-danger" role="alert">
+        Không thể xóa bản ghi này
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tenncc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenncc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sdt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sdt)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Quay lại", "Index")
+        </div>
+    }
+</div>

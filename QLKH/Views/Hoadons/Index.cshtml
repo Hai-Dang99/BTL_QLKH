@@ -1,0 +1,39 @@
+﻿@model IEnumerable<QLKH.Models.Hoadon>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Khachhang.tenkhachhang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ngaytao)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Khachhang.tenkhachhang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ngaytao)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.mahoadon }) |
+            @Html.ActionLink("Details", "Details", new { id=item.mahoadon }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.mahoadon })
+        </td>
+    </tr>
+}
+
+</table>

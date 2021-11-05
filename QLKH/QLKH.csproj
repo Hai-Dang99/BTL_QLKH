@@ -128,8 +128,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\hanghoasController.cs" />
+    <Compile Include="Controllers\HoadonsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhachhangsController.cs" />
+    <Compile Include="Controllers\nhaccsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -189,6 +192,21 @@
     <Content Include="Views\Khachhangs\Details.cshtml" />
     <Content Include="Views\Khachhangs\Edit.cshtml" />
     <Content Include="Views\Khachhangs\Index.cshtml" />
+    <Content Include="Views\nhaccs\Create.cshtml" />
+    <Content Include="Views\nhaccs\Delete.cshtml" />
+    <Content Include="Views\nhaccs\Details.cshtml" />
+    <Content Include="Views\nhaccs\Edit.cshtml" />
+    <Content Include="Views\nhaccs\Index.cshtml" />
+    <Content Include="Views\hanghoas\Create.cshtml" />
+    <Content Include="Views\hanghoas\Delete.cshtml" />
+    <Content Include="Views\hanghoas\Details.cshtml" />
+    <Content Include="Views\hanghoas\Edit.cshtml" />
+    <Content Include="Views\hanghoas\Index.cshtml" />
+    <Content Include="Views\Hoadons\Create.cshtml" />
+    <Content Include="Views\Hoadons\Delete.cshtml" />
+    <Content Include="Views\Hoadons\Details.cshtml" />
+    <Content Include="Views\Hoadons\Edit.cshtml" />
+    <Content Include="Views\Hoadons\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

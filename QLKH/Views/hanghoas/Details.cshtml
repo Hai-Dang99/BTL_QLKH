@@ -1,0 +1,50 @@
+﻿@model QLKH.Models.hanghoa
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>hanghoa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nhacc.tenncc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nhacc.tenncc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tenhanghoa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenhanghoa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dongia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dongia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.donvitinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.donvitinh)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.mahanghoa }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
