@@ -1,4 +1,4 @@
-namespace QLKH.Models
+﻿namespace QLKH.Models
 {
     using System;
     using System.Collections.Generic;
@@ -17,12 +17,15 @@ namespace QLKH.Models
 
         [Key]
         [StringLength(20)]
+        [Display(Name = "Mã phiếu nhập")]
         public string maphieunhap { get; set; }
 
+        [Display(Name ="Ngày tạo")]
         public DateTime ngaytao { get; set; }
 
         [Required]
         [StringLength(20)]
+        [Display(Name = "Nhà cung cấp")]
         public string mancc { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

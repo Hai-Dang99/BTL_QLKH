@@ -1,20 +1,20 @@
-﻿@model QLKH.Models.Hoadon
+﻿@model QLKH.Models.phieunhap
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Chi tiết hóa đơn</h2>
+<h2>Chi tiết phiếu nhập</h2>
 
 <div>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Khachhang.tenkhachhang)
+            @Html.DisplayNameFor(model => model.nhacc.tenncc)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Khachhang.tenkhachhang)
+            @Html.DisplayFor(model => model.nhacc.tenncc)
         </dd>
 
         <dt>
@@ -28,6 +28,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Sửa", "Edit", new { id = Model.mahoadon }) |
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.maphieunhap }) |
     @Html.ActionLink("Quay lại", "Index")
 </p>

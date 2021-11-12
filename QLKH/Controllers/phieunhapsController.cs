@@ -10,127 +10,126 @@ using QLKH.Models;
 
 namespace QLKH.Controllers
 {
-    public class HoadonsController : Controller
+    public class phieunhapsController : Controller
     {
         private QLKHDBContext db = new QLKHDBContext();
 
-        // GET: Hoadons
+        // GET: phieunhaps
         public ActionResult Index()
         {
-            var hoadons = db.Hoadons.Include(h => h.Khachhang);
-            return View(hoadons.ToList());
+            var phieunhaps = db.phieunhaps.Include(p => p.nhacc);
+            return View(phieunhaps.ToList());
         }
 
-        // GET: Hoadons/Details/5
+        // GET: phieunhaps/Details/5
         public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Hoadon hoadon = db.Hoadons.Find(id);
-            if (hoadon == null)
+            phieunhap phieunhap = db.phieunhaps.Find(id);
+            if (phieunhap == null)
             {
                 return HttpNotFound();
             }
-            return View(hoadon);
+            return View(phieunhap);
         }
 
-        // GET: Hoadons/Create
+        // GET: phieunhaps/Create
         public ActionResult Create()
         {
-            ViewBag.makhachhang = new SelectList(db.Khachhangs, "makhachhang", "tenkhachhang");
+            ViewBag.mancc = new SelectList(db.nhaccs, "mancc", "tenncc");
             return View();
         }
 
-        // POST: Hoadons/Create
+        // POST: phieunhaps/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "mahoadon,ngaytao,makhachhang")] Hoadon hoadon)
+        public ActionResult Create([Bind(Include = "maphieunhap,ngaytao,mancc")] phieunhap phieunhap)
         {
-            if (checkKey(hoadon.mahoadon) == true)
+            if (checkKey(phieunhap.maphieunhap) == true)
             {
                 ViewBag.Flag = 1;
-                ViewBag.makhachhang = new SelectList(db.Khachhangs, "makhachhang", "tenkhachhang", hoadon.makhachhang);
-                return View(hoadon);
+                ViewBag.mancc = new SelectList(db.nhaccs, "mancc", "tenncc", phieunhap.mancc);
+                return View(phieunhap);
             }
             try
             {
                 if (ModelState.IsValid)
                 {
-                    db.Hoadons.Add(hoadon);
+                    db.phieunhaps.Add(phieunhap);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-
-                ViewBag.makhachhang = new SelectList(db.Khachhangs, "makhachhang", "tenkhachhang", hoadon.makhachhang);
-                return View(hoadon);
+                ViewBag.mancc = new SelectList(db.nhaccs, "mancc", "tenncc", phieunhap.mancc);
+                return View(phieunhap);
             }
             catch (Exception ex)
             {
                 ViewBag.Error = "Lỗi nhập dữ liệu " + ex.Message;
-                ViewBag.makhachhang = new SelectList(db.Khachhangs, "makhachhang", "tenkhachhang", hoadon.makhachhang);
-                return View(hoadon);
+                ViewBag.mancc = new SelectList(db.nhaccs, "mancc", "tenncc", phieunhap.mancc);
+                return View(phieunhap);
             }
         }
 
-        // GET: Hoadons/Edit/5
+        // GET: phieunhaps/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Hoadon hoadon = db.Hoadons.Find(id);
-            if (hoadon == null)
+            phieunhap phieunhap = db.phieunhaps.Find(id);
+            if (phieunhap == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.makhachhang = new SelectList(db.Khachhangs, "makhachhang", "tenkhachhang", hoadon.makhachhang);
-            return View(hoadon);
+            ViewBag.mancc = new SelectList(db.nhaccs, "mancc", "tenncc", phieunhap.mancc);
+            return View(phieunhap);
         }
 
-        // POST: Hoadons/Edit/5
+        // POST: phieunhaps/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "mahoadon,ngaytao,makhachhang")] Hoadon hoadon)
+        public ActionResult Edit([Bind(Include = "maphieunhap,ngaytao,mancc")] phieunhap phieunhap)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(hoadon).State = EntityState.Modified;
+                db.Entry(phieunhap).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.makhachhang = new SelectList(db.Khachhangs, "makhachhang", "tenkhachhang", hoadon.makhachhang);
-            return View(hoadon);
+            ViewBag.mancc = new SelectList(db.nhaccs, "mancc", "tenncc", phieunhap.mancc);
+            return View(phieunhap);
         }
 
-        // GET: Hoadons/Delete/5
+        // GET: phieunhaps/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Hoadon hoadon = db.Hoadons.Find(id);
-            if (hoadon == null)
+            phieunhap phieunhap = db.phieunhaps.Find(id);
+            if (phieunhap == null)
             {
                 return HttpNotFound();
             }
-            return View(hoadon);
+            return View(phieunhap);
         }
 
-        // POST: Hoadons/Delete/5
+        // POST: phieunhaps/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Hoadon hoadon = db.Hoadons.Find(id);
-            db.Hoadons.Remove(hoadon);
+            phieunhap phieunhap = db.phieunhaps.Find(id);
+            db.phieunhaps.Remove(phieunhap);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -146,7 +145,7 @@ namespace QLKH.Controllers
 
         private bool checkKey(string key)
         {
-            return db.Hoadons.Count(u => u.mahoadon == key) > 0;
+            return db.phieunhaps.Count(u => u.maphieunhap == key) > 0;
         }
     }
 }

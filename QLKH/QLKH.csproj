@@ -133,6 +133,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhachhangsController.cs" />
     <Compile Include="Controllers\nhaccsController.cs" />
+    <Compile Include="Controllers\phieunhapsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -207,6 +208,11 @@
     <Content Include="Views\Hoadons\Details.cshtml" />
     <Content Include="Views\Hoadons\Edit.cshtml" />
     <Content Include="Views\Hoadons\Index.cshtml" />
+    <Content Include="Views\phieunhaps\Create.cshtml" />
+    <Content Include="Views\phieunhaps\Delete.cshtml" />
+    <Content Include="Views\phieunhaps\Details.cshtml" />
+    <Content Include="Views\phieunhaps\Edit.cshtml" />
+    <Content Include="Views\phieunhaps\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

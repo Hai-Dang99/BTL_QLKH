@@ -1,4 +1,4 @@
-namespace QLKH.Models
+﻿namespace QLKH.Models
 {
     using System;
     using System.Collections.Generic;
@@ -11,8 +11,10 @@ namespace QLKH.Models
     {
         [Key]
         [StringLength(20)]
+        [Display(Name = "Mã hóa đơn")]
         public string mahoadon { get; set; }
 
+        [Display(Name ="Ngày tạo")]
         public DateTime ngaytao { get; set; }
 
         [StringLength(20)]

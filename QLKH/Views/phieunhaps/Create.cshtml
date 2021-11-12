@@ -1,14 +1,14 @@
-﻿@model QLKH.Models.Hoadon
+﻿@model QLKH.Models.phieunhap
 
 @{
     ViewBag.Title = "Create";
 }
 
-<h2>Thêm mới hóa đơn</h2>
+<h2>Thêm mới phiếu nhập</h2>
 @if (ViewBag.Flag == 1)
 {
     <div class="alert alert-danger" role="alert">
-        Mã hóa đơn đã tồn tại
+        Mã phiếu nhập đã tồn tại
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -23,10 +23,10 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.mahoadon, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.maphieunhap, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.mahoadon, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.mahoadon, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.maphieunhap, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.maphieunhap, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -39,10 +39,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.makhachhang, "Khách hàng", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.mancc, "Nhà cung cấp", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("makhachhang", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.makhachhang, "", new { @class = "text-danger" })
+                @Html.DropDownList("mancc", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.mancc, "", new { @class = "text-danger" })
             </div>
         </div>
 

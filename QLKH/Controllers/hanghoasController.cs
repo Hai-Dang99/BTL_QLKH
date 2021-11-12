@@ -50,15 +50,30 @@ namespace QLKH.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "mahanghoa,tenhanghoa,dongia,donvitinh,mancc")] hanghoa hanghoa)
         {
-            if (ModelState.IsValid)
+            if (checkKey(hanghoa.mahanghoa) == true)
             {
-                db.hanghoas.Add(hanghoa);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewBag.Flag = 1;
+                ViewBag.mancc = new SelectList(db.nhaccs, "mancc", "tenncc", hanghoa.mancc);
+                return View(hanghoa);
             }
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    db.hanghoas.Add(hanghoa);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            ViewBag.mancc = new SelectList(db.nhaccs, "mancc", "tenncc", hanghoa.mancc);
-            return View(hanghoa);
+                ViewBag.mancc = new SelectList(db.nhaccs, "mancc", "tenncc", hanghoa.mancc);
+                return View(hanghoa);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Lỗi nhập dữ liệu " + ex.Message;
+                ViewBag.mancc = new SelectList(db.nhaccs, "mancc", "tenncc", hanghoa.mancc);
+                return View(hanghoa);
+            }
         }
 
         // GET: hanghoas/Edit/5
@@ -127,6 +142,11 @@ namespace QLKH.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private bool checkKey(string key)
+        {
+            return db.hanghoas.Count(u => u.mahanghoa == key) > 0;
         }
     }
 }

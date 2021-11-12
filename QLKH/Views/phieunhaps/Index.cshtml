@@ -1,10 +1,10 @@
-﻿@model IEnumerable<QLKH.Models.Hoadon>
+﻿@model IEnumerable<QLKH.Models.phieunhap>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Danh sách hóa đơn</h2>
+<h2>Danh sách phiếu nhập</h2>
 
 <p>
     @Html.ActionLink("Thêm mới", "Create")
@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Khachhang.tenkhachhang)
+            @Html.DisplayNameFor(model => model.nhacc.tenncc)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ngaytao)
@@ -23,15 +23,15 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Khachhang.tenkhachhang)
+            @Html.DisplayFor(modelItem => item.nhacc.tenncc)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ngaytao)
         </td>
         <td>
-            @Html.ActionLink("Sửa", "Edit", new { id=item.mahoadon }) |
-            @Html.ActionLink("Chi tiết", "Details", new { id=item.mahoadon }) |
-            @Html.ActionLink("Xóa", "Delete", new { id=item.mahoadon })
+            @Html.ActionLink("Sửa", "Edit", new { id=item.maphieunhap }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.maphieunhap }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.maphieunhap })
         </td>
     </tr>
 }

@@ -1,4 +1,4 @@
-namespace QLKH.Models
+﻿namespace QLKH.Models
 {
     using System;
     using System.Collections.Generic;
@@ -19,16 +19,20 @@ namespace QLKH.Models
 
         [Key]
         [StringLength(20)]
+        [Display(Name ="Mã hoàng hóa")]
         public string mahanghoa { get; set; }
 
         [Required]
         [StringLength(25)]
+        [Display(Name = "Tên hoàng hóa")]
         public string tenhanghoa { get; set; }
 
+        [Display(Name = "Giá")]
         public decimal dongia { get; set; }
 
         [Required]
         [StringLength(15)]
+        [Display(Name = "Đơn vị tính")]
         public string donvitinh { get; set; }
 
         [Required]
