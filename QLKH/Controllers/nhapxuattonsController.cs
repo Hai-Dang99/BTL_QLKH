@@ -10,129 +10,114 @@ using QLKH.Models;
 
 namespace QLKH.Controllers
 {
-    public class nhaccsController : BaseController
+    public class nhapxuattonsController : BaseController
     {
         private QLKHDBContext db = new QLKHDBContext();
 
-        // GET: nhaccs
+        // GET: nhapxuattons
         public ActionResult Index()
         {
-            return View(db.nhaccs.ToList());
+            var nhapxuattons = db.nhapxuattons.Include(n => n.hanghoa);
+            return View(nhapxuattons.ToList());
         }
 
-        // GET: nhaccs/Details/5
+        // GET: nhapxuattons/Details/5
         public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            nhacc nhacc = db.nhaccs.Find(id);
-            if (nhacc == null)
+            nhapxuatton nhapxuatton = db.nhapxuattons.Find(id);
+            if (nhapxuatton == null)
             {
                 return HttpNotFound();
             }
-            return View(nhacc);
+            return View(nhapxuatton);
         }
 
-        // GET: nhaccs/Create
+        // GET: nhapxuattons/Create
         public ActionResult Create()
         {
+            ViewBag.mahanghoa = new SelectList(db.hanghoas, "mahanghoa", "tenhanghoa");
             return View();
         }
 
-        // POST: nhaccs/Create
+        // POST: nhapxuattons/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "mancc,tenncc,sdt")] nhacc nhacc)
+        public ActionResult Create([Bind(Include = "mahanghoa,nhap,xuat,ton")] nhapxuatton nhapxuatton)
         {
-            if (checkKey(nhacc.mancc) == true)
+            if (ModelState.IsValid)
             {
-                ViewBag.Flag = 1;
-                return View(nhacc);
+                db.nhapxuattons.Add(nhapxuatton);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    db.nhaccs.Add(nhacc);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-                return View(nhacc);
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Error = "Lỗi nhập dữ liệu " + ex.Message;
-                return View(nhacc);
-            }
+
+            ViewBag.mahanghoa = new SelectList(db.hanghoas, "mahanghoa", "tenhanghoa", nhapxuatton.mahanghoa);
+            return View(nhapxuatton);
         }
 
-        // GET: nhaccs/Edit/5
+        // GET: nhapxuattons/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            nhacc nhacc = db.nhaccs.Find(id);
-            if (nhacc == null)
+            nhapxuatton nhapxuatton = db.nhapxuattons.Find(id);
+            if (nhapxuatton == null)
             {
                 return HttpNotFound();
             }
-            return View(nhacc);
+            ViewBag.mahanghoa = new SelectList(db.hanghoas, "mahanghoa", "tenhanghoa", nhapxuatton.mahanghoa);
+            return View(nhapxuatton);
         }
 
-        // POST: nhaccs/Edit/5
+        // POST: nhapxuattons/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "mancc,tenncc,sdt")] nhacc nhacc)
+        public ActionResult Edit([Bind(Include = "mahanghoa,nhap,xuat,ton")] nhapxuatton nhapxuatton)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(nhacc).State = EntityState.Modified;
+                db.Entry(nhapxuatton).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(nhacc);
+            ViewBag.mahanghoa = new SelectList(db.hanghoas, "mahanghoa", "tenhanghoa", nhapxuatton.mahanghoa);
+            return View(nhapxuatton);
         }
 
-        // GET: nhaccs/Delete/5
+        // GET: nhapxuattons/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            nhacc nhacc = db.nhaccs.Find(id);
-            if (nhacc == null)
+            nhapxuatton nhapxuatton = db.nhapxuattons.Find(id);
+            if (nhapxuatton == null)
             {
                 return HttpNotFound();
             }
-            return View(nhacc);
+            return View(nhapxuatton);
         }
 
-        // POST: nhaccs/Delete/5
+        // POST: nhapxuattons/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            nhacc nhacc = db.nhaccs.Find(id);
-            if (checkhh(nhacc.mancc) == true)
-            {
-                ViewBag.Flag = 1;
-                return View(nhacc);
-            }
-            else
-            {
-                db.nhaccs.Remove(nhacc);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }  
+            nhapxuatton nhapxuatton = db.nhapxuattons.Find(id);
+            db.nhapxuattons.Remove(nhapxuatton);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
@@ -142,16 +127,6 @@ namespace QLKH.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        private bool checkKey(string key)
-        {
-            return db.nhaccs.Count(u => u.mancc == key) > 0;
-        }
-
-        private bool checkhh(String key)
-        {
-            return db.hanghoas.Count(u => u.mancc == key) > 0;
         }
     }
 }

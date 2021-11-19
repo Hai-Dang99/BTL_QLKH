@@ -1,0 +1,39 @@
+﻿@model IEnumerable<QLKH.Models.phieuxuat>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Danh sách phiếu xuất</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Khachhang.tenkhachhang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ngaytao)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Khachhang.tenkhachhang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ngaytao)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "Edit", new { id=item.maphieuxuat }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.maphieuxuat }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.maphieuxuat })
+        </td>
+    </tr>
+}
+
+</table>

@@ -10,7 +10,7 @@ using QLKH.Models;
 
 namespace QLKH.Controllers
 {
-    public class KhachhangsController : Controller
+    public class KhachhangsController : BaseController
     {
         private QLKHDBContext db = new QLKHDBContext();
 
@@ -23,16 +23,16 @@ namespace QLKH.Controllers
         // GET: Khachhangs/Details/5
         public ActionResult Details(string id)
         {
-            if (id == null)
+            if (id == null)//nếu id = null
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);//báo lỗi
             }
-            Khachhang khachhang = db.Khachhangs.Find(id);
-            if (khachhang == null)
+            Khachhang khachhang = db.Khachhangs.Find(id);//tìm khách hàng trong csdl
+            if (khachhang == null)//nếu không tìm thấy khách hàng trong csdl
             {
                 return HttpNotFound();
             }
-            return View(khachhang);
+            return View(khachhang);//trả về view details
         }
 
         // GET: Khachhangs/Create
@@ -55,18 +55,18 @@ namespace QLKH.Controllers
             }
             try
             {
-                if (ModelState.IsValid)
+                if (ModelState.IsValid)//nếu nhập thông tin không đúng luật (VD: để trống 1 ô nào đấy)
                 {
-                    db.Khachhangs.Add(khachhang);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+                    db.Khachhangs.Add(khachhang);//thêm vào csdl
+                    db.SaveChanges();//lưu
+                    return RedirectToAction("Index");//trả về view index
                 }
-                return View(khachhang);
+                return View(khachhang);//trả về view Create 
             }
             catch (Exception ex)
             {
                 ViewBag.Error = "Lỗi nhập dữ liệu " + ex.Message;
-                return View(khachhang);
+                return View(khachhang);//trả về view Create
             }
         }
 
@@ -94,26 +94,26 @@ namespace QLKH.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(khachhang).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                db.Entry(khachhang).State = EntityState.Modified; //sửa
+                db.SaveChanges();//lưu
+                return RedirectToAction("Index");//trả về view index
             }
-            return View(khachhang);
+            return View(khachhang);//trả về view Edit + thông tin khách hàng 
         }
 
         // GET: Khachhangs/Delete/5
         public ActionResult Delete(string id)
         {
-            if (id == null)
+            if (id == null)//nếu mã khách hàng là null thì trả về thông báo lỗi
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Khachhang khachhang = db.Khachhangs.Find(id);
-            if (khachhang == null)
+            Khachhang khachhang = db.Khachhangs.Find(id);//tìm trong csdl xem có khách hàng nào trùng id vs id đc nhận k?
+            if (khachhang == null)//nếu không tìm thấy khách hàng
             {
                 return HttpNotFound();
             }
-            return View(khachhang);
+            return View(khachhang);//nếu tìm thấy khách hàng
         }
 
         // POST: Khachhangs/Delete/5
@@ -121,10 +121,18 @@ namespace QLKH.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Khachhang khachhang = db.Khachhangs.Find(id);
-            db.Khachhangs.Remove(khachhang);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            Khachhang khachhang = db.Khachhangs.Find(id);//tìm khách hàng trong csdl có mã khách hàng trùng id vs id nhận đc
+            if (checkctn(khachhang.makhachhang) == true)
+            {
+                ViewBag.Flag = 1;
+                return View(khachhang);
+            }
+            else
+            {
+                db.Khachhangs.Remove(khachhang);//xóa 
+                db.SaveChanges();//lưu
+                return RedirectToAction("Index");//trả về view Index
+            }
         }
 
         protected override void Dispose(bool disposing)
@@ -138,7 +146,12 @@ namespace QLKH.Controllers
 
         private bool checkKey(string key)
         {
-            return db.Khachhangs.Count(u => u.makhachhang == key) > 0;
+            return db.Khachhangs.Count(u => u.makhachhang == key) > 0;//tìm trong cơ sở dữ liệu có khách hàng nào có id trùng vs id đc nhập k
+        }
+
+        private bool checkctn(String key)
+        {
+            return db.chitietnhaps.Count(u => u.makhachhang == key) > 0;
         }
     }
 }

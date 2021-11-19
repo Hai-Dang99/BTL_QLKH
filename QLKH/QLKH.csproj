@@ -128,12 +128,19 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\chitietnhapsController.cs" />
+    <Compile Include="Controllers\chitietxuatsController.cs" />
     <Compile Include="Controllers\hanghoasController.cs" />
     <Compile Include="Controllers\HoadonsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhachhangsController.cs" />
     <Compile Include="Controllers\nhaccsController.cs" />
+    <Compile Include="Controllers\nhapxuattonsController.cs" />
     <Compile Include="Controllers\phieunhapsController.cs" />
+    <Compile Include="Controllers\phieuxuatsController.cs" />
+    <Compile Include="Controllers\taikhoansController.cs" />
+    <Compile Include="Filters\AuthorizeCustom.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -185,8 +192,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Khachhangs\Create.cshtml" />
     <Content Include="Views\Khachhangs\Delete.cshtml" />
@@ -213,9 +218,36 @@
     <Content Include="Views\phieunhaps\Details.cshtml" />
     <Content Include="Views\phieunhaps\Edit.cshtml" />
     <Content Include="Views\phieunhaps\Index.cshtml" />
+    <Content Include="Views\phieuxuats\Create.cshtml" />
+    <Content Include="Views\phieuxuats\Delete.cshtml" />
+    <Content Include="Views\phieuxuats\Details.cshtml" />
+    <Content Include="Views\phieuxuats\Edit.cshtml" />
+    <Content Include="Views\phieuxuats\Index.cshtml" />
+    <Content Include="Views\chitietnhaps\Create.cshtml" />
+    <Content Include="Views\chitietnhaps\Delete.cshtml" />
+    <Content Include="Views\chitietnhaps\Details.cshtml" />
+    <Content Include="Views\chitietnhaps\Edit.cshtml" />
+    <Content Include="Views\chitietnhaps\Index.cshtml" />
+    <Content Include="Views\chitietxuats\Create.cshtml" />
+    <Content Include="Views\chitietxuats\Delete.cshtml" />
+    <Content Include="Views\chitietxuats\Details.cshtml" />
+    <Content Include="Views\chitietxuats\Edit.cshtml" />
+    <Content Include="Views\chitietxuats\Index.cshtml" />
+    <Content Include="Views\nhapxuattons\Create.cshtml" />
+    <Content Include="Views\nhapxuattons\Delete.cshtml" />
+    <Content Include="Views\nhapxuattons\Details.cshtml" />
+    <Content Include="Views\nhapxuattons\Edit.cshtml" />
+    <Content Include="Views\nhapxuattons\Index.cshtml" />
+    <Content Include="Views\taikhoans\Create.cshtml" />
+    <Content Include="Views\taikhoans\Delete.cshtml" />
+    <Content Include="Views\taikhoans\Details.cshtml" />
+    <Content Include="Views\taikhoans\Edit.cshtml" />
+    <Content Include="Views\taikhoans\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

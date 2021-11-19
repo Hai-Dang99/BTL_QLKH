@@ -23,8 +23,8 @@
         [Display(Name ="Mã khách hàng")]
         public string makhachhang { get; set; }
 
-        [Required]
-        [StringLength(50)]
+        [Required]//bắt buộc phải có
+        [StringLength(50)]//độ dài tối da của dữ liệu
         [Display(Name = "Tên khách hàng")]
         public string tenkhachhang { get; set; }
 

@@ -25,6 +25,15 @@
                     <li>@Html.ActionLink("Nhà cung cấp", "Index", "nhaccs")</li>
                     <li>@Html.ActionLink("Hàng hóa", "Index", "hanghoas")</li>
                     <li>@Html.ActionLink("Phiếu nhập", "Index", "phieunhaps")</li>
+                    <li>@Html.ActionLink("Phiếu xuất", "Index", "phieuxuats")</li>
+                    <li>@Html.ActionLink("Chi tiết nhập", "Index", "chitietnhaps")</li>
+                    <li>@Html.ActionLink("Chi tiết xuất", "Index", "chitietxuats")</li>
+                    @*<li>@Html.ActionLink("Nhập xuất tồn", "Index", "nhapxuattons")</li>*@
+                    @if (Session["Role"] == "SUPER_ADMIN")
+                    {
+                        <li>@Html.ActionLink("Tài khoản Admin", "Index", "taikhoans")</li>
+                    }
+                    <li>@Html.ActionLink("Đăng xuất", "Logout", "Home")</li>
                 </ul>
             </div>
         </div>
@@ -32,9 +41,7 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        
     </div>
 
     @Scripts.Render("~/bundles/jquery")

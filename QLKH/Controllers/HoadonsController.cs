@@ -10,7 +10,7 @@ using QLKH.Models;
 
 namespace QLKH.Controllers
 {
-    public class HoadonsController : Controller
+    public class HoadonsController : BaseController
     {
         private QLKHDBContext db = new QLKHDBContext();
 

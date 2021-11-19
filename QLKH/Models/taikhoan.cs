@@ -1,4 +1,4 @@
-namespace QLKH.Models
+﻿namespace QLKH.Models
 {
     using System;
     using System.Collections.Generic;
@@ -11,11 +11,11 @@ namespace QLKH.Models
     {
         public int id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Tài khoản không được để trống")]
         [StringLength(30)]
         public string username { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Mật khẩu không được để trống")]
         [StringLength(30)]
         public string matkhau { get; set; }
 

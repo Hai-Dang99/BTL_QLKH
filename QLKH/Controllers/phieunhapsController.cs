@@ -10,7 +10,7 @@ using QLKH.Models;
 
 namespace QLKH.Controllers
 {
-    public class phieunhapsController : Controller
+    public class phieunhapsController : BaseController
     {
         private QLKHDBContext db = new QLKHDBContext();
 

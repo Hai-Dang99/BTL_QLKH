@@ -10,127 +10,127 @@ using QLKH.Models;
 
 namespace QLKH.Controllers
 {
-    public class hanghoasController : BaseController
+    public class phieuxuatsController : BaseController
     {
         private QLKHDBContext db = new QLKHDBContext();
 
-        // GET: hanghoas
+        // GET: phieuxuats
         public ActionResult Index()
         {
-            var hanghoas = db.hanghoas.Include(h => h.nhacc);
-            return View(hanghoas.ToList());
+            var phieuxuats = db.phieuxuats.Include(p => p.Khachhang);
+            return View(phieuxuats.ToList());
         }
 
-        // GET: hanghoas/Details/5
+        // GET: phieuxuats/Details/5
         public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            hanghoa hanghoa = db.hanghoas.Find(id);
-            if (hanghoa == null)
+            phieuxuat phieuxuat = db.phieuxuats.Find(id);
+            if (phieuxuat == null)
             {
                 return HttpNotFound();
             }
-            return View(hanghoa);
+            return View(phieuxuat);
         }
 
-        // GET: hanghoas/Create
+        // GET: phieuxuats/Create
         public ActionResult Create()
         {
-            ViewBag.mancc = new SelectList(db.nhaccs, "mancc", "tenncc");
+            ViewBag.makhachhang = new SelectList(db.Khachhangs, "makhachhang", "tenkhachhang");
             return View();
         }
 
-        // POST: hanghoas/Create
+        // POST: phieuxuats/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "mahanghoa,tenhanghoa,dongia,donvitinh,mancc")] hanghoa hanghoa)
+        public ActionResult Create([Bind(Include = "maphieuxuat,ngaytao,makhachhang")] phieuxuat phieuxuat)
         {
-            if (checkKey(hanghoa.mahanghoa) == true)
+            if (checkKey(phieuxuat.maphieuxuat) == true)
             {
                 ViewBag.Flag = 1;
-                ViewBag.mancc = new SelectList(db.nhaccs, "mancc", "tenncc", hanghoa.mancc);
-                return View(hanghoa);
+                ViewBag.makhachhang = new SelectList(db.Khachhangs, "makhachhang", "tenkhachhang", phieuxuat.makhachhang);
+                return View(phieuxuat);
             }
             try
             {
                 if (ModelState.IsValid)
                 {
-                    db.hanghoas.Add(hanghoa);
+                    db.phieuxuats.Add(phieuxuat);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
 
-                ViewBag.mancc = new SelectList(db.nhaccs, "mancc", "tenncc", hanghoa.mancc);
-                return View(hanghoa);
+                ViewBag.makhachhang = new SelectList(db.Khachhangs, "makhachhang", "tenkhachhang", phieuxuat.makhachhang);
+                return View(phieuxuat);
             }
             catch (Exception ex)
             {
                 ViewBag.Error = "Lỗi nhập dữ liệu " + ex.Message;
-                ViewBag.mancc = new SelectList(db.nhaccs, "mancc", "tenncc", hanghoa.mancc);
-                return View(hanghoa);
+                ViewBag.makhachhang = new SelectList(db.Khachhangs, "makhachhang", "tenkhachhang", phieuxuat.makhachhang);
+                return View(phieuxuat);
             }
         }
 
-        // GET: hanghoas/Edit/5
+        // GET: phieuxuats/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            hanghoa hanghoa = db.hanghoas.Find(id);
-            if (hanghoa == null)
+            phieuxuat phieuxuat = db.phieuxuats.Find(id);
+            if (phieuxuat == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.mancc = new SelectList(db.nhaccs, "mancc", "tenncc", hanghoa.mancc);
-            return View(hanghoa);
+            ViewBag.makhachhang = new SelectList(db.Khachhangs, "makhachhang", "tenkhachhang", phieuxuat.makhachhang);
+            return View(phieuxuat);
         }
 
-        // POST: hanghoas/Edit/5
+        // POST: phieuxuats/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "mahanghoa,tenhanghoa,dongia,donvitinh,mancc")] hanghoa hanghoa)
+        public ActionResult Edit([Bind(Include = "maphieuxuat,ngaytao,makhachhang")] phieuxuat phieuxuat)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(hanghoa).State = EntityState.Modified;
+                db.Entry(phieuxuat).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.mancc = new SelectList(db.nhaccs, "mancc", "tenncc", hanghoa.mancc);
-            return View(hanghoa);
+            ViewBag.makhachhang = new SelectList(db.Khachhangs, "makhachhang", "tenkhachhang", phieuxuat.makhachhang);
+            return View(phieuxuat);
         }
 
-        // GET: hanghoas/Delete/5
+        // GET: phieuxuats/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            hanghoa hanghoa = db.hanghoas.Find(id);
-            if (hanghoa == null)
+            phieuxuat phieuxuat = db.phieuxuats.Find(id);
+            if (phieuxuat == null)
             {
                 return HttpNotFound();
             }
-            return View(hanghoa);
+            return View(phieuxuat);
         }
 
-        // POST: hanghoas/Delete/5
+        // POST: phieuxuats/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            hanghoa hanghoa = db.hanghoas.Find(id);
-            db.hanghoas.Remove(hanghoa);
+            phieuxuat phieuxuat = db.phieuxuats.Find(id);
+            db.phieuxuats.Remove(phieuxuat);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -146,7 +146,7 @@ namespace QLKH.Controllers
 
         private bool checkKey(string key)
         {
-            return db.hanghoas.Count(u => u.mahanghoa == key) > 0;
+            return db.phieuxuats.Count(u => u.maphieuxuat == key) > 0;
         }
     }
 }

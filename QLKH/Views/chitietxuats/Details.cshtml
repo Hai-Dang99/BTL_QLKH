@@ -1,0 +1,57 @@
+﻿@model QLKH.Models.chitietxuat
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Chi tiết xuất</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.hanghoa.tenhanghoa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hanghoa.tenhanghoa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Khachhang.tenkhachhang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Khachhang.tenkhachhang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phieuxuat.makhachhang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phieuxuat.makhachhang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.soluong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soluong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngayxuat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngayxuat)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.stt }) |
+    @Html.ActionLink("Quay lại", "Index")
+</p>

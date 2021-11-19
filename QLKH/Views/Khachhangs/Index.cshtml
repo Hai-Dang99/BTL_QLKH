@@ -10,6 +10,7 @@
     @Html.ActionLink("Tạo khách hàng mới", "Create")
 </p>
 <table class="table">
+    @*tiêu đề*@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.tenkhachhang)
@@ -20,20 +21,22 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.tenkhachhang)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sodienthoai)
-        </td>
-        <td>
-            @Html.ActionLink("Sửa", "Edit", new { id=item.makhachhang }) |
-            @Html.ActionLink("Chi tiết", "Details", new { id=item.makhachhang }) |
-            @Html.ActionLink("Xóa", "Delete", new { id=item.makhachhang })
-        </td>
-    </tr>
-}
+    @*dữ liệu*@
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.tenkhachhang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sodienthoai)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.makhachhang }) |
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.makhachhang }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.makhachhang })
+            </td>
+        </tr>
+    }
 
 </table>
