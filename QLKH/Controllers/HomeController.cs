@@ -11,10 +11,10 @@ namespace QLKH.Controllers
     {
         private QLKHDBContext db = new QLKHDBContext();
 
-        public ActionResult Index()
-        {
-            return View();
-        }
+        //public ActionResult Index()
+        //{
+        //    return View();
+        //}
 
         public ActionResult Login()
         {
