@@ -1,18 +1,34 @@
-﻿@model QLKH.Models.taikhoan
+﻿@model QLKH.Models.taikhoanConfirm
 
-@{
-    ViewBag.Title = "Create";
+@{ ViewBag.Title = "Create"; }
+
+<h2>Thêm mới tài khoản admin</h2>
+
+@if (ViewBag.Flag == 1)
+{
+    <div class="alert alert-danger" role="alert">
+        Xác nhận mật khẩu sai
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>}
+
+@if (ViewBag.Flag == 2)
+{
+    <div class="alert alert-danger" role="alert">
+        Tên đăng nhập đã tồn tại
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 }
 
-<h2>Create</h2>
 
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>taikhoan</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -26,31 +42,28 @@
         <div class="form-group">
             @Html.LabelFor(model => model.matkhau, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.matkhau, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.matkhau, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
                 @Html.ValidationMessageFor(model => model.matkhau, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.fullcontrol, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.matkhauConfirm, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.fullcontrol)
-                    @Html.ValidationMessageFor(model => model.fullcontrol, "", new { @class = "text-danger" })
-                </div>
+                @Html.EditorFor(model => model.matkhauConfirm, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+                @Html.ValidationMessageFor(model => model.matkhauConfirm, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Thêm mới" class="btn btn-default" />
             </div>
         </div>
-    </div>
-}
+    </div>}
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Quay lại", "Index")
 </div>
 
 @section Scripts {

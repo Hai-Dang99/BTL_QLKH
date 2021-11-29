@@ -13,10 +13,12 @@
 
         [Required(ErrorMessage ="Tài khoản không được để trống")]
         [StringLength(30)]
+        [Display(Name = "Tên đăng nhập")]
         public string username { get; set; }
 
         [Required(ErrorMessage = "Mật khẩu không được để trống")]
         [StringLength(30)]
+        [Display(Name = "Mật khẩu")]
         public string matkhau { get; set; }
 
         public bool? fullcontrol { get; set; }

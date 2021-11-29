@@ -46,16 +46,33 @@ namespace QLKH.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,username,matkhau,fullcontrol")] taikhoan taikhoan)
+        public ActionResult Create(taikhoanConfirm model)
         {
+            if (checkUsername(model.username) == true)//kiểm tra xem mã hàng hóa đã tồn tại trong csdl hay chưa
+            {
+                ViewBag.flag = 2;//thông báo lỗi
+                return View(model);
+            }
             if (ModelState.IsValid)
             {
-                db.taikhoans.Add(taikhoan);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (model.matkhau.Equals(model.matkhauConfirm))
+                {
+                    taikhoan taikhoan = new taikhoan();
+                    taikhoan.username = model.username;
+                    taikhoan.matkhau = model.matkhau;
+                    taikhoan.fullcontrol = false;
+                    db.taikhoans.Add(taikhoan);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Flag = 1;
+                    return View(model);
+                }
             }
 
-            return View(taikhoan);
+            return View(model);
         }
 
         // GET: taikhoans/Edit/5
@@ -70,7 +87,12 @@ namespace QLKH.Controllers
             {
                 return HttpNotFound();
             }
-            return View(taikhoan);
+            taikhoanConfirm model = new taikhoanConfirm();
+            model.id = taikhoan.id;
+            model.username = taikhoan.username;
+            model.matkhau = taikhoan.matkhau;
+            model.matkhauConfirm = taikhoan.matkhau;
+            return View(model);
         }
 
         // POST: taikhoans/Edit/5
@@ -78,15 +100,33 @@ namespace QLKH.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,username,matkhau,fullcontrol")] taikhoan taikhoan)
+        public ActionResult Edit(taikhoanConfirm model)
         {
+            //if (checkUsername(model.username) == true)//kiểm tra xem mã hàng hóa đã tồn tại trong csdl hay chưa
+            //{
+            //    ViewBag.flag = 2;//thông báo lỗi
+            //    return View(model);
+            //}
             if (ModelState.IsValid)
             {
-                db.Entry(taikhoan).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (model.matkhau.Equals(model.matkhauConfirm))
+                {
+                    taikhoan taikhoan = new taikhoan();
+                    taikhoan.id = model.id;
+                    taikhoan.username = model.username;
+                    taikhoan.matkhau = model.matkhau;
+                    taikhoan.fullcontrol = false;
+                    db.Entry(taikhoan).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.flag = 1;//thông báo lỗi
+                    return View(model);
+                }
             }
-            return View(taikhoan);
+            return View(model);
         }
 
         // GET: taikhoans/Delete/5
@@ -122,6 +162,11 @@ namespace QLKH.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private bool checkUsername(String username)//bool là đúng hoặc sai
+        {
+            return db.taikhoans.Count(u => u.username == username) > 0;
         }
     }
 }

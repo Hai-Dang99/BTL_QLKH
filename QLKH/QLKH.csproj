@@ -156,6 +156,7 @@
     <Compile Include="Models\QLKHDBContext.cs" />
     <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\taikhoan.cs" />
+    <Compile Include="Models\taikhoanConfirm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
