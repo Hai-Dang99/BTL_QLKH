@@ -40,7 +40,7 @@ namespace QLKH.Controllers
                     {
                         Session["role"] = "ADMIN";
                     }
-                    return RedirectToAction("Index");
+                    return Redirect("/hanghoas/Index");
                 }
                 else
                 {
