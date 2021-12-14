@@ -169,7 +169,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Migrations\QLKH.sql" />
+    <Content Include="Image\dai-hoc-mo-dia-chat.jpg" />
+    <Content Include="Image\essencefinalevent.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
